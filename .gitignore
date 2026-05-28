@@ -1,0 +1,10 @@
+/target/
+
+# Local verification artifacts
+mailtm_*.json
+mailtm_credentials.txt
+temp_mail_messages.json
+test_email.txt
+test_run_*.log
+verification_full_flow.log
+verify_full_flow.py
