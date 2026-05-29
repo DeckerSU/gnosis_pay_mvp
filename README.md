@@ -9,7 +9,7 @@ This repository contains a Rust MVP command-line application that demonstrates t
 | Area | Implementation |
 |---|---|
 | Wallet generation | Creates a new EVM address and private key with `ethers-signers`. |
-| SIWE signing | Builds a Sign-In with Ethereum message containing the nonce, domain, URI, chain ID, version, and issued-at timestamp, then signs it with the generated wallet. |
+| SIWE signing | Builds a Sign-In with Ethereum message containing the nonce, domain, URI, chain ID, version, and issued-at timestamp following the EIP-4361 format, then signs it with the generated wallet.[4] |
 | Authentication API | Implements `GET /api/v1/auth/nonce`, `POST /api/v1/auth/challenge`, `POST /api/v1/auth/signup/otp`, and `POST /api/v1/auth/signup`. |
 | KYC demo request | Implements `GET /api/v1/source-of-funds` with `Authorization: Bearer <JWT>`. |
 | SDK module | Keeps API types, HTTP calls, and wallet/SIWE helpers under `src/sdk`. |
@@ -168,3 +168,4 @@ This repository is intentionally small and demonstration-oriented. A production 
 [1]: https://docs.gnosispay.com/api-reference/authentication/generate-nonce "Gnosis Pay API Reference: Generate nonce"
 [2]: https://docs.gnosispay.com/api-reference/kyc/retrieve-source-of-funds-questions "Gnosis Pay API Reference: Retrieve Source of Funds questions"
 [3]: https://docs.login.xyz/ "Sign-In with Ethereum documentation"
+[4]: https://eips.ethereum.org/EIPS/eip-4361 "EIP-4361: Sign-In with Ethereum"
