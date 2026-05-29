@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "gnosis-pay": {
+      "type": "http",
+      "url": "https://docs.gnosispay.com/mcp"
+    }
+  }
+}
