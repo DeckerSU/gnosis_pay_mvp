@@ -1,6 +1,6 @@
 # Gnosis Pay Rust MVP CLI
 
-This repository contains a Rust MVP command-line application that demonstrates the Gnosis Pay authentication flow and then performs an authenticated KYC demo request to **Retrieve Source of Funds questions**. The application generates a new EVM wallet, prints the address and private key for demonstration purposes, obtains an authentication nonce, builds and signs a SIWE message, receives a pre-signup JWT, requests an email OTP, creates a new user, and finally uses the resulting JWT to call `GET /api/v1/source-of-funds`.[1] [2]
+This repository contains a Rust MVP command-line application that demonstrates the Gnosis Pay authentication flow and then performs an authenticated KYC demo request to **Retrieve Source of Funds questions**. The application generates a new EVM wallet, prints the address and private key for demonstration purposes, obtains an authentication nonce, builds and signs a SIWE message, receives a pre-signup JWT, requests an email OTP, creates a new user, and finally uses the resulting JWT to call `GET /api/v1/source-of-funds`.
 
 > **Security note.** The private key and JWT are printed only because this is an MVP/demo application. In a real product, private keys, JWTs, OTPs, and email mailbox credentials must never be printed to stdout, committed to source control, or stored unencrypted.
 
@@ -9,7 +9,7 @@ This repository contains a Rust MVP command-line application that demonstrates t
 | Area | Implementation |
 |---|---|
 | Wallet generation | Creates a new EVM address and private key with `ethers-signers`. |
-| SIWE signing | Builds a Sign-In with Ethereum message containing the nonce, domain, URI, chain ID, version, and issued-at timestamp following the EIP-4361 format, then signs it with the generated wallet.[4] |
+| SIWE signing | Builds a Sign-In with Ethereum message containing the nonce, domain, URI, chain ID, version, and issued-at timestamp following the EIP-4361 format, then signs it with the generated wallet. |
 | Authentication API | Implements `GET /api/v1/auth/nonce`, `POST /api/v1/auth/challenge`, `POST /api/v1/auth/signup/otp`, and `POST /api/v1/auth/signup`. |
 | KYC demo request | Implements `GET /api/v1/source-of-funds` with `Authorization: Bearer <JWT>`. |
 | SDK module | Keeps API types, HTTP calls, and wallet/SIWE helpers under `src/sdk`. |
@@ -125,7 +125,7 @@ The harness writes `verification_full_flow.log` locally. The archive excludes ge
 
 ## What SIWE domain and SIWE URI mean here
 
-In this MVP, `SIWE domain` and `SIWE URI` are explicit CLI inputs because they are part of the signed SIWE message. The generated EVM wallet signs a message that says, in effect, that a specific Ethereum address is signing in to a specific domain and URI. Gnosis Pay then verifies the signature and issues a JWT if the message and signature are acceptable.[3]
+In this MVP, `SIWE domain` and `SIWE URI` are explicit CLI inputs because they are part of the signed SIWE message. The generated EVM wallet signs a message that says, in effect, that a specific Ethereum address is signing in to a specific domain and URI. Gnosis Pay then verifies the signature and issues a JWT if the message and signature are acceptable.
 
 | Field | In this MVP | In a real project |
 |---|---|---|
@@ -165,7 +165,7 @@ This repository is intentionally small and demonstration-oriented. A production 
 
 ## References
 
-[1]: https://docs.gnosispay.com/api-reference/authentication/generate-nonce "Gnosis Pay API Reference: Generate nonce"
-[2]: https://docs.gnosispay.com/api-reference/kyc/retrieve-source-of-funds-questions "Gnosis Pay API Reference: Retrieve Source of Funds questions"
-[3]: https://docs.login.xyz/ "Sign-In with Ethereum documentation"
-[4]: https://eips.ethereum.org/EIPS/eip-4361 "EIP-4361: Sign-In with Ethereum"
+1. [Gnosis Pay API Reference: Generate nonce](https://docs.gnosispay.com/api-reference/authentication/generate-nonce)
+2. [Gnosis Pay API Reference: Retrieve Source of Funds questions](https://docs.gnosispay.com/api-reference/kyc/retrieve-source-of-funds-questions)
+3. [Sign-In with Ethereum documentation](https://docs.login.xyz/)
+4. [EIP-4361: Sign-In with Ethereum](https://eips.ethereum.org/EIPS/eip-4361)
